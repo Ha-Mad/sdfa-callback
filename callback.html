@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAuth Callback</title>
+</head>
+<body>
+    <h2>Authentication Successful!</h2>
+    <p>You can close this window and return to the app.</p>
+    
+    <script>
+        // This extracts the authorization code from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const token = urlParams.get('token');
+        const error = urlParams.get('error');
+        
+        if (code) {
+            console.log('Authorization code:', code);
+            document.body.innerHTML += `<p>Code received: ${code.substring(0, 20)}...</p>`;
+        } else if (token) {
+            console.log('Token received');
+            document.body.innerHTML += '<p>Token received</p>';
+        } else if (error) {
+            console.log('Error:', error);
+            document.body.innerHTML += `<p>Error: ${error}</p>`;
+        }
+    </script>
+</body>
+</html>
